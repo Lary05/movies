@@ -98,4 +98,19 @@ class MovieController extends Controller
 
         return redirect()->route('movies.index')->with('success', 'Film törölve!');
     }
+    public function exportCsv()
+    {
+        return Excel::download(new MoviesExport, 'movies.csv');
+    }
+
+    public function exportPdf()
+    {
+        // lekérdezzük az adatokat az API-ból
+        $response = Http::api()->get('movies');
+        $movies = $response->json('data') ?? $response->json();
+
+        $pdf = Pdf::loadView('movies.pdf', ['movies' => $movies]);
+        // ha szeretnél fejléces/ lábléces opciókat: Pdf::loadView(...)->setPaper('a4', 'landscape')
+        return $pdf->stream('movies.pdf');
+    }
 }
