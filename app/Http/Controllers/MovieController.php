@@ -10,23 +10,24 @@ use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
 {
-     /**
- * @api {get} /actors Get all actors
- * @apiName GetActors
- * @apiGroup Actors
+ /**
+ * @api {get} /movies Get all movies
+ * @apiName GetMovies
+ * @apiGroup Movies
  * @apiVersion 1.0.0
  *
- * @apiSuccessExample {json} Success:
+ * @apiSuccessExample {json} Success-Response:
  * HTTP/1.1 200 OK
  * {
- *   "products": [
- *      {
- *         "id": 1,
- *         "name": "Tom Cruise"
- *      }
+ *   "movies": [
+ *     {
+ *       "id": 1,
+ *       "title": "Mission Impossible"
+ *     }
  *   ]
  * }
  */
+
 
     public function index()
     {
@@ -46,23 +47,32 @@ class MovieController extends Controller
 
     
 /**
- * @api {post} /actors Create new actor
- * @apiName CreateActor
- * @apiGroup Actors
+ * @api {post} /movies Create new movie
+ * @apiName CreateMovie
+ * @apiGroup Movies
  * @apiVersion 1.0.0
  *
- * @apiParam {String} name Actor name
- * @apiParam {String} [description] Actor description
+ * @apiBody {String} title Movie title
+ * @apiBody {Number} director_id Director ID
+ * @apiBody {Number} category_id Category ID
  *
- * @apiSuccessExample {json} Success:
- * HTTP/1.1 200 OK
+ * @apiParamExample {json} Request-Example:
  * {
- *   "actor": {
- *      "id": 10,
- *      "name": "New Actor"
+ *   "title": "Mission Impossible",
+ *   "director_id": 1,
+ *   "category_id": 2
+ * }
+ *
+ * @apiSuccessExample {json} Success-Response:
+ * HTTP/1.1 201 Created
+ * {
+ *   "movie": {
+ *     "id": 1,
+ *     "title": "Mission Impossible"
  *   }
  * }
  */
+
     public function store(MovieRequest $request)
     {
 
@@ -114,13 +124,14 @@ class MovieController extends Controller
 
     
 /**
- * @api {put} /actors/:id Update actor
- * @apiName UpdateActor
- * @apiGroup Actors
+ * @api {put} /movies/:id Update movie
+ * @apiName UpdateMovie
+ * @apiGroup Movies
  * @apiVersion 1.0.0
  *
- * @apiParam {Number} id Actor ID
- *
+ * @apiParam {Number} id Movie ID
+ * @apiBody {String} title Movie title
+ * 
  * @apiSuccessExample {json} Success:
  * HTTP/1.1 200 OK
  * {
@@ -168,19 +179,21 @@ class MovieController extends Controller
 
     
 /**
- * @api {delete} /actors/:id Delete actor
- * @apiName DeleteActor
- * @apiGroup Actors
+ * @api {delete} /movies/:id Delete movie
+ * @apiName DeleteMovie
+ * @apiGroup Movies
  * @apiVersion 1.0.0
  *
- * @apiParam {Number} id Actor ID
+ * @apiParam {Number} id Movie ID
  *
  * @apiSuccessExample {json} Success:
  * HTTP/1.1 200 OK
  * {
- *   "message": "Actor deleted successfully."
+ *   "message": "Movie deleted successfully."
  * }
  */
+
+
     public function destroy(Movie $movie)
     {
         if ($movie->cover_image) {

@@ -23,7 +23,15 @@ Route::delete('/movies/{id}', [MovieController::class, 'destroy'])->middleware('
 
 
 
+Route::get('/users/{id}/roles', [UserRoleController::class, 'index']);
+Route::post('/users/{id}/roles', [UserRoleController::class, 'store']);
+Route::delete('/users/{id}/roles/{roleId}', [UserRoleController::class, 'destroy']);
+Route::put('/users/{id}/roles', [UserRoleController::class, 'update']);
+
+
+
+
+
+
 Route::post('/users/login' , [Userscontroller::class, 'login']);
-
-
 Route::get('/users', [Userscontroller::class, 'index'])->middleware('auth:sanctum');

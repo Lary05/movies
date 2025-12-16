@@ -8,25 +8,27 @@ use Illuminate\Support\Facades\Storage;
 
 class ActorController extends Controller
 {
-    /**
+  /**
  * @api {get} /actors Get all actors
  * @apiName GetActors
  * @apiGroup Actors
  * @apiVersion 1.0.0
  *
- * @apiSuccessExample {json} Success:
+ * @apiSuccessExample {json} Success-Response:
  * HTTP/1.1 200 OK
  * {
- *   "products": [
- *      {
- *         "id": 1,
- *         "name": "Tom Cruise"
- *      }
+ *   "actors": [
+ *     {
+ *       "id": 1,
+ *       "name": "Tom Cruise"
+ *     }
  *   ]
  * }
  */
 
 
+
+  
     public function index()
     {
         //$actors = Actor::paginate(12);
@@ -112,6 +114,8 @@ class ActorController extends Controller
 
 
 
+
+
 /**
  * @api {put} /actors/:id Update actor
  * @apiName UpdateActor
@@ -119,13 +123,14 @@ class ActorController extends Controller
  * @apiVersion 1.0.0
  *
  * @apiParam {Number} id Actor ID
+ * @apiBody {String} name Actor name
  *
- * @apiSuccessExample {json} Success:
+ * @apiSuccessExample {json} Success-Response:
  * HTTP/1.1 200 OK
  * {
  *   "actor": {
- *      "id": 3,
- *      "name": "Updated Name"
+ *     "id": 1,
+ *     "name": "Updated Actor"
  *   }
  * }
  */

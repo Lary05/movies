@@ -8,23 +8,24 @@ use Illuminate\Support\Facades\Storage;
 
 class DirectorController extends Controller
 {
-      /**
- * @api {get} /actors Get all actors
- * @apiName GetActors
- * @apiGroup Actors
+  /**
+ * @api {get} /directors Get all directors
+ * @apiName GetDirectors
+ * @apiGroup Directors
  * @apiVersion 1.0.0
  *
- * @apiSuccessExample {json} Success:
+ * @apiSuccessExample {json} Success-Response:
  * HTTP/1.1 200 OK
  * {
- *   "products": [
- *      {
- *         "id": 1,
- *         "name": "Tom Cruise"
- *      }
+ *   "directors": [
+ *     {
+ *       "id": 1,
+ *       "name": "Steven Spielberg"
+ *     }
  *   ]
  * }
  */
+
 
     public function index()
     {
@@ -47,23 +48,23 @@ class DirectorController extends Controller
     }
 
 /**
- * @api {post} /actors Create new actor
- * @apiName CreateActor
- * @apiGroup Actors
+ * @api {post} /directors Create new director
+ * @apiName CreateDirector
+ * @apiGroup Directors
  * @apiVersion 1.0.0
  *
- * @apiParam {String} name Actor name
- * @apiParam {String} [description] Actor description
+ * @apiBody {String} name Director name
  *
- * @apiSuccessExample {json} Success:
- * HTTP/1.1 200 OK
+ * @apiSuccessExample {json} Success-Response:
+ * HTTP/1.1 201 Created
  * {
- *   "actor": {
- *      "id": 10,
- *      "name": "New Actor"
+ *   "director": {
+ *     "id": 1,
+ *     "name": "Steven Spielberg"
  *   }
  * }
  */
+
     public function store(DirectorRequest $request)
     {
 
@@ -111,17 +112,19 @@ class DirectorController extends Controller
 
    
 /**
- * @api {put} /actors/:id Update actor
- * @apiName UpdateActor
- * @apiGroup Actors
+ * @api {put} /directors/:id Update director
+ * @apiName UpdateDirector
+ * @apiGroup Directors
  * @apiVersion 1.0.0
  *
- * @apiParam {Number} id Actor ID
+ * @apiParam {Number} id Director ID
+ * @apiBody {String} name Director name
  *
+
  * @apiSuccessExample {json} Success:
  * HTTP/1.1 200 OK
  * {
- *   "actor": {
+ *   "director": {
  *      "id": 3,
  *      "name": "Updated Name"
  *   }
@@ -160,19 +163,21 @@ class DirectorController extends Controller
 
     
 /**
- * @api {delete} /actors/:id Delete actor
- * @apiName DeleteActor
- * @apiGroup Actors
+ * @api {delete} /directors/:id Delete director
+ * @apiName DeleteDirector
+ * @apiGroup Directors
  * @apiVersion 1.0.0
  *
- * @apiParam {Number} id Actor ID
- *
+ * @apiParam {Number} id Director ID
+ * 
  * @apiSuccessExample {json} Success:
  * HTTP/1.1 200 OK
  * {
- *   "message": "Actor deleted successfully."
+ *   "message": "Director deleted successfully."
  * }
  */
+
+
     public function destroy(Director $director)
     {
         if ($director->image) {
